@@ -7,6 +7,8 @@ RUN mkdir -p /var/cache/nginx/ && \
   touch /var/run/nginx.pid && chown 1000001 /var/run/nginx.pid && \
   chown -R 1000001 /etc/nginx/conf.d/ && \
   mkdir /nginxcache && chown 1000001 /nginxcache
+RUN apt-get update && apt-get install -y ca-certificates && \
+  cat /etc/ssl/certs/*.pem > /etc/ssl/certs/combined.pem
 
 EXPOSE 8000
 
